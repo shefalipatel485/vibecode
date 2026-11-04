@@ -1,0 +1,21 @@
+Test ID,Module,Test Scenario,Test Steps / Input,Expected Result,Actual Result / Status
+TC-001,Authentication,Register with valid customer data,POST /auth/register with valid fields,201 Created,Not run
+TC-002,Authentication,Register duplicate email,Register same email twice,409 Conflict,Not run
+TC-003,Authentication,Reject short password,Password shorter than 8 chars,422 Validation Error,Not run
+TC-004,Authentication,Login with valid credentials,POST /auth/login,200 and access_token,Not run
+TC-005,Authentication,Reject invalid password,POST /auth/login with wrong password,401 Unauthorized,Not run
+TC-006,Authorization,Reject request without token,GET /users/me without bearer token,401 Unauthorized,Not run
+TC-007,Authorization,Reject customer on admin endpoint,Customer token calls /admin/dashboard,403 Forbidden,Not run
+TC-008,Categories,List active categories,GET /categories,200 and category list,Not run
+TC-009,Categories,Admin creates category,POST /categories with admin token,201 Created,Not run
+TC-010,Services,List services,GET /services,200 and service list,Not run
+TC-011,Address,Customer adds address,POST /addresses with customer token,201 Created,Not run
+TC-012,Address,Customer cannot delete another user's address,Use another customer's address ID,404/403; no data change,Not run
+TC-013,Booking,Create booking with valid address and service,POST /bookings,201 Created,Not run
+TC-014,Booking,Reject booking for another customer's address,Use address not owned by token user,404/403,Not run
+TC-015,Booking,Reject booking in past,scheduled_date in past,400 Bad Request,Not run
+TC-016,Payment,Create test payment record,POST /payments/test,201; clearly test-only,Not run
+TC-017,Reviews,Reject review for non-completed booking,POST /reviews,400 Bad Request,Not run
+TC-018,Notifications,Mark own notification read,PATCH /notifications/{id}/read,200 success,Not run
+TC-019,Health,Check API health,GET /health,200 healthy,Not run
+TC-020,Frontend,Build frontend bundle,npm run build,Build succeeds,Not run
